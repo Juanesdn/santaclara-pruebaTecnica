@@ -1,20 +1,22 @@
-import React from 'react';
-import { ThemeProvider } from '@material-ui/styles'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Layout, Login } from './views'
-import './assets/scss/main.scss';
-import theme from './theme';
+import React from "react";
+import { ThemeProvider } from "@material-ui/styles";
+import { createBrowserHistory } from "history";
+import { Router } from "react-router-dom";
+import "./assets/scss/main.scss";
+import theme from "./theme";
+import { Layout, SignIn } from "./views";
+import Routes from "./routes";
+
+const history = createBrowserHistory();
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <Router history={history}>
         <Layout>
-          
+          <SignIn />
         </Layout>
-        <Switch>
-          <Route path="/" exact component={Login} />
-        </Switch>
+        <Routes />
       </Router>
     </ThemeProvider>
   );
