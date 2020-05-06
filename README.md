@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Instrucciones
+
+Para poder correr bien el proyecto es necesario tener un archivo .env en el root del directorio <br />
+Se debe crear dentro de este .env una variable llamada REACT_APP_API_URL que contenga el url del api
+
 ## Available Scripts
 
 In the project directory, you can run:
