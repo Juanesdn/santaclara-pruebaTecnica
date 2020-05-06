@@ -12,6 +12,7 @@ import {
 const INITIAL_STATE = {
   username: "",
   password: "",
+  user: null,
   error: false,
   loading: false,
 };
@@ -41,7 +42,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOGOUT_USER:
       return { INITIAL_STATE };
     case GET_USER_INFO:
-      return { ...state };
+      return { ...state, user: action.payload };
     default:
       return state;
   }

@@ -1,9 +1,17 @@
-import React from "react";
-import { Container, Typography } from "@material-ui/core";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Container, Typography, CircularProgress } from "@material-ui/core";
+import { getUserInfo } from "../../actions";
 
 const Profile = () => {
-  const user = JSON.parse(localStorage.getItem("userInfo"));
-  return (
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
+
+  return user ? (
     <Container maxWidth="lg" component="main">
       <Typography variant="h3" gutterBottom>
         Usuario: {user.username}
@@ -18,6 +26,17 @@ const Profile = () => {
         Correo: {user.username}
       </Typography>
     </Container>
+  ) : (
+    <CircularProgress
+      size={40}
+      left={-20}
+      top={10}
+      status={"loading"}
+      style={{
+        marginLeft: "50%",
+        marginTop: 20,
+      }}
+    />
   );
 };
 

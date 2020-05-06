@@ -19,7 +19,7 @@ const RouteWrapper = ({ component: Component, isPrivate, ...rest }) => {
    */
 
   if (!isPrivate && signed) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/home" />;
   }
 
   /**

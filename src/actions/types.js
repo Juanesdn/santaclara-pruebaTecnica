@@ -10,3 +10,7 @@ export const GET_USER_INFO = "get_user_info";
 
 // Rules
 export const GET_RULES = "get_rules";
+export const GET_RULE_GROUP = "get_rule_group";
+export const GET_RULE_OS = "get_rule_os";
+export const GET_TOP_RULES = "get_top_rules";
+export const GET_RULES_COMPLIANCE = "get_rules_compliance";

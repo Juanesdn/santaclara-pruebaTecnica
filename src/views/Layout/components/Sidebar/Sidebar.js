@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { Drawer, List, ListItem, ListItemText } from "@material-ui/core";
-import { userLogout, getUserInfo } from "../../../../actions";
+import { userLogout } from "../../../../actions";
 import { useDispatch } from "react-redux";
 
 const DRAWER_WIDTH = 240;
@@ -21,19 +21,11 @@ const styles = (theme) => ({
 
 const Sidebar = ({ classes, variant, open, onClose, setSidebar, sidebar }) => {
   const user = localStorage.getItem("key") ? true : false;
-  const userInfo = localStorage.getItem("userInfo");
   const dispatch = useDispatch();
 
   const Logout = () => {
     handleClick();
     dispatch(userLogout());
-  };
-
-  const getProfile = () => {
-    handleClick();
-    if (!userInfo) {
-      dispatch(getUserInfo());
-    }
   };
 
   const handleClick = () => {
@@ -62,7 +54,7 @@ const Sidebar = ({ classes, variant, open, onClose, setSidebar, sidebar }) => {
               button
               component={Link}
               to="/profile"
-              onClick={getProfile}
+              onClick={handleClick}
             >
               <ListItemText>Perfil</ListItemText>
             </ListItem>

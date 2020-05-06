@@ -12,15 +12,20 @@ import {
   Chip,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { getRules } from "../../actions";
+import { getRules, getRuleGroup } from "../../actions";
 
 const Rules = () => {
   const { rules } = useSelector((state) => state.rules);
   const dispatch = useDispatch();
+  console.log(rules);
 
   useEffect(() => {
     dispatch(getRules());
   }, []);
+
+  const handleRowClick = (id) => {
+    dispatch(getRuleGroup(id));
+  };
 
   return rules ? (
     <Container>
@@ -36,7 +41,11 @@ const Rules = () => {
           </TableHead>
           <TableBody>
             {rules.map((rule) => (
-              <TableRow key={rule.id}>
+              <TableRow
+                hover={true}
+                onClick={() => handleRowClick(rule.id)}
+                key={rule.id}
+              >
                 <TableCell component="th" scope="row">
                   {rule.name}
                 </TableCell>

@@ -10,6 +10,10 @@ import {
   LOGOUT_USER,
   GET_USER_INFO,
   GET_RULES,
+  GET_RULE_GROUP,
+  GET_RULE_OS,
+  GET_TOP_RULES,
+  GET_RULES_COMPLIANCE,
 } from "./types";
 
 /*
@@ -39,7 +43,7 @@ export const loginUser = ({ username, password }) => {
     dispatch({ type: LOGIN_USER });
 
     axios
-      .post(process.env.REACT_APP_API_URL + "auth/login/", params)
+      .post(`${process.env.REACT_APP_API_URL}/auth/login/`, params)
       .then((response) => {
         loginUserSuccess(dispatch, response);
       })
@@ -62,7 +66,7 @@ export const userLogout = () => {
 
   return (dispatch) => {
     axios
-      .post(process.env.REACT_APP_API_URL + "auth/logout/")
+      .post(`${process.env.REACT_APP_API_URL}/auth/logout/`)
       .then((response) => dispatch({ type: LOGOUT_USER }));
   };
 };
@@ -79,9 +83,8 @@ export const getUserInfo = () => {
 
   return (dispatch) => {
     axios
-      .get(process.env.REACT_APP_API_URL + "auth/user/", config)
+      .get(`${process.env.REACT_APP_API_URL}/auth/user/`, config)
       .then((response) => {
-        localStorage.setItem("userInfo", JSON.stringify(response.data));
         dispatch({
           type: GET_USER_INFO,
           payload: response.data,
@@ -121,10 +124,80 @@ export const getRules = () => {
 
   return (dispatch) => {
     axios
-      .get(process.env.REACT_APP_API_URL + "api/v1/rules/", config)
+      .get(`${process.env.REACT_APP_API_URL}/api/v1/rules/`, config)
       .then((response) => {
         dispatch({
           type: GET_RULES,
+          payload: response.data,
+        });
+      });
+  };
+};
+
+export const getRuleGroup = (id) => {
+  const key = localStorage.getItem("key");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Token " + key,
+    },
+  };
+
+  return (dispatch) => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/api/v1/rules/groups/${id}/`,
+        config
+      )
+      .then((response) => {
+        console.log(response.data);
+        dispatch({
+          type: GET_RULE_GROUP,
+          payload: response.data,
+        });
+      });
+  };
+};
+
+export const getTopRules = () => {
+  const key = localStorage.getItem("key");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Token " + key,
+    },
+  };
+
+  return (dispatch) => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/v1/rules/top/`, config)
+      .then((response) => {
+        dispatch({
+          type: GET_TOP_RULES,
+          payload: response.data,
+        });
+      });
+  };
+};
+
+export const getRuleCompliance = () => {
+  const key = localStorage.getItem("key");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Token " + key,
+    },
+  };
+
+  return (dispatch) => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/v1/rules/compliance/`, config)
+      .then((response) => {
+        dispatch({
+          type: GET_RULES_COMPLIANCE,
           payload: response.data,
         });
       });
