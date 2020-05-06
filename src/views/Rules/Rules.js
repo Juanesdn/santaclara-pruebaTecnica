@@ -35,6 +35,8 @@ const Rules = () => {
             <TableRow>
               <TableCell>Name</TableCell>
               <TableCell align="right">Title</TableCell>
+              <TableCell align="right">Group</TableCell>
+              <TableCell align="right">OS</TableCell>
               <TableCell align="right">Severity</TableCell>
               <TableCell align="right">has fix</TableCell>
             </TableRow>
@@ -50,6 +52,8 @@ const Rules = () => {
                   {rule.name}
                 </TableCell>
                 <TableCell align="right">{rule.title}</TableCell>
+                <TableCell align="right">{rule.group_read}</TableCell>
+                <TableCell align="right">{rule.servers[0].os}</TableCell>
                 <TableCell align="right">{rule.severity}</TableCell>
                 <TableCell align="right">
                   {rule.has_fix ? (

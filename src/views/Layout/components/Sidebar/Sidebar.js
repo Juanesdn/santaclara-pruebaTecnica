@@ -50,6 +50,9 @@ const Sidebar = ({ classes, variant, open, onClose, setSidebar, sidebar }) => {
       <List>
         {user ? (
           <Fragment>
+            <ListItem button component={Link} to="/home" onClick={handleClick}>
+              <ListItemText>Home</ListItemText>
+            </ListItem>
             <ListItem
               button
               component={Link}
@@ -57,9 +60,6 @@ const Sidebar = ({ classes, variant, open, onClose, setSidebar, sidebar }) => {
               onClick={handleClick}
             >
               <ListItemText>Perfil</ListItemText>
-            </ListItem>
-            <ListItem button component={Link} to="/home" onClick={handleClick}>
-              <ListItemText>Home</ListItemText>
             </ListItem>
             <ListItem button component={Link} to="/rules" onClick={handleClick}>
               <ListItemText>Rules</ListItemText>

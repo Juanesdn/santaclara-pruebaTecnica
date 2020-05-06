@@ -11,7 +11,6 @@ import {
   GET_USER_INFO,
   GET_RULES,
   GET_RULE_GROUP,
-  GET_RULE_OS,
   GET_TOP_RULES,
   GET_RULES_COMPLIANCE,
 } from "./types";

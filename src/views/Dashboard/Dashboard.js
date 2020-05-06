@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { PieChart, Pie, Tooltip, Cell } from "recharts";
-import { getTopRules, getRuleCompliance, passwordChanged } from "../../actions";
+import { getTopRules, getRuleCompliance } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,7 +52,7 @@ const Dashboard = () => {
   return (
     <Container>
       <Grid container spacing={3}>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h5">
               Rule Compliance
@@ -77,7 +77,7 @@ const Dashboard = () => {
             </PieChart>
           </Paper>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h5">
               Top Rules
